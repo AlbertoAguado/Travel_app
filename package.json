@@ -1,0 +1,50 @@
+{
+  "name": "capstone-project",
+  "version": "1.0.0",
+  "description": "Capstone project of the Udacity front-end Nanodegree",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.13.7",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
+    "file-loader": "^6.2.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^0.23.1"
+
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "prod": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --config webpack.dev.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertoAguado/Travel_app.git"
+  },
+  "keywords": [
+    "Capstone",
+    "Travel",
+    "app"
+  ],
+  "author": "Alberto Aguado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlbertoAguado/Travel_app/issues"
+  },
+  "homepage": "https://github.com/AlbertoAguado/Travel_app#readme"
+}
