@@ -1,40 +1,67 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Weather Journal</title>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Slabo+13px&family=Ultra&display=swap" rel="stylesheet">
-</head>
- <body>
-<div id = "app">
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
-  <div class ="holder zip">
-    <label for="zip">Enter U.S. Zipcode here:</label>
-    <input type="text" id="zip" placeholder="Enter zip code here">
-  </div>
-  <div class ="holder feel">
-    <label for="feelings">How are you feeling today?:</label>
-    <input type="text" class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></input>
-  </div>
-  <button id="generate" type = "submit"> Generate </button>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-   <div id = "temp"></div>
-  
-   <div id = "city"></div>
-   
-   <div><img id = "icon" alt=""></div>
-   <div id = "main"></div>
-   <div id = "description"></div>
-   <div id = "content"></div>
-  </div>
-  </div>
-  </div>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel App - Alberto Aguado</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title"> Travel App </div>
+        <div class="subtitle"> Your trip´s details</div>
+        <div class="destino">
+            <label for=ciudad>Where are you planning to go?</label>
+            <!-- <br> -->
+            <input type="text" id="destino" placeholder="City">
+        </div>
+        <br>
+        <div class="holder date">
+            <label class="date">When are you leaving?</label>
+            <input type="date" id="departDate" placeholder="1st february 2022"></input>
+            <br>
+            <button id=getData> Submit </button>
+        </div>
+        <div class="results holder">
+            <table>
+                <tr>
+                    <h1> My Trip </h1>
+                    <td class="detalles-viaje" id="fecha"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="ciudad"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="codigo"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="longitud"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="latitud"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="población"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="weather"></td>
+                </tr>
+                <tr>
+                    <td class="detalles-viaje" id="main-image">
+                        <img id="imagen" src="">
+                    </td>
+                </tr>
+                <tr>
+                    <br>
+                    <td class="detalles-viaje-timer" id="timer"> </td>
+                </tr>
+            </table>
+        </div>
+        <footer>
+            <h6>Alberto Aguado. &copy;</h6>
+        </footer>
+    </div>
 </body>
+
 </html>

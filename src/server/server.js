@@ -1,62 +1,50 @@
-/*CODE FROM MY PROJECT 3*/ 
+// Path Required (Put this when you run npm start when server.js is on a different path //
+var path = require('path');
 
-
-// Setup empty JS object to act as endpoint for all routes
-projectData = {};
-
-// Require Express to run server and routes
-const express = require ('express');
-
-// Start up an instance of app
-const app = express();
-
-/*Dependencies*/ 
-const bodyParser = require ('body-parser');
-
-
-/* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Express Server //
+const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
-app.use(cors());
 
-// Cors for cross origin allowance
-
-// Initialize the main project folder
+// Using Express // 
+const app = express();
 app.use(express.static('dist'));
 
 
-// Setup Server
-const port = 3000;
-const server = app.listen(port, listening);
+// Server Name & Port //
+const serverPort = 7000;
+const serverName = "localhost";
 
+// Server Listening Function // 
 function listening() {
-    console.log(`running on localhost: ${port}`)
+    console.log(`Server running on ${serverName}:${serverPort}`);
 }
 
-// POST route
-app.post('/add', function(req,res){
-  let newEntry = {
-    temperature: req.body.temperature,
-    date: req.body.date,
-    feeling: req.body.feeling,
-    city: req.body.city,
-    main: req.body.main,
-    description: req.body.description,
-    icon: req.body.icon
-  }
-  
-  //projectData.push(newEntry);
-  projectData = Object.assign(newEntry);
-  res.send(projectData);
-  });
+function getData(req, res) {
+    res.status(200).send(projectData);
+}
 
-// GET route
-app.get('/all', sendData);
+/**
+ * Post weather service response data.
+ * 
+ * @param {*} req request
+ * @param {*} res response data
+ */
+function postData(req, res) {
+    projectData = req.body;
+    console.log(projectData);
+    res.status(200).send(projectData);
+}
 
-function sendData (request, response) {
-  response.send(projectData);
-};
 
-/*code from my project 3*/ 
+app.use(bodyParser.json());
+// set up app to use "cors" //
+app.use(cors());
+// initialize main project folder //
+app.use(express.static('src'));
+
+//  Routes //
+app.get("/all", getData);
+app.post("/add", postData);
+// Server Runs and It will be listening //
+app.listen(serverPort, listening);
