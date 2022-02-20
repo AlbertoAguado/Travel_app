@@ -1,11 +1,9 @@
-// API URL & Key
+/*CLAVES*/
 const API_URL = 'https://api.weatherbit.io/v2.0/current?';
-const API_KEY = 'e1a6e12e8e704fe09548f845cdc3aa57';
+const API_KEY = process.env.CLAVE_WEATHERBIT;
+/*claves*/ 
 
-const metricSign = '&#8457;'
-
-
-function validar(input) {
+function validateInput(input) {
 
     const isInputValid = input ? input.length > 0 : false;
 
@@ -14,7 +12,7 @@ function validar(input) {
 
 async function fetchWeatherData(input) {
 
-    const isInputValid = validar(input);
+    const isInputValid = validateInput(input);
 
     if (isInputValid) {
 
@@ -22,7 +20,7 @@ async function fetchWeatherData(input) {
 
         try {
 
-            const response = await fetch(`${API_URL}&city=${encodedInput}&key=${API_KEY}&units=I`);
+            const response = await fetch(`${API_URL}&city=${encodedInput}&key=${API_KEY}&units=M`);
 
             if (!response.ok) {
 
@@ -43,45 +41,29 @@ async function fetchWeatherData(input) {
     }
 }
 
-async function actualizarUI(data) {
-    //
-
-    try {
-
-        let weatherData = data.data[0].app_temp
-        let weatherIcon = data.data[0].weather.icon
-
-        document.getElementById("weather").innerHTML = `Weather: ${weatherData} ${metricSign}`;
-
-    } catch (error) {
-
-        throw error;
-    }
-}
-
 function getWeatherData() {
 
     const input = document.getElementById("destino").value;
 
     try {
 
-        const isInputValid = validar(input);
+        const isInputValid = validateInput(input);
 
         if (isInputValid) {
-    
+
             fetchWeatherData(input)
                 .then((data) => {
                     if (data) {
-                      
-                        actualizarUI(data);
+       
+                        updateUI(data);
                     }
                 })
                 .catch((error) => {
-                
+
                     alert(error);
                 });
         } else {
-         
+
             alert("Please enter a valid city name.");
         }
     } catch (error) {
@@ -90,6 +72,23 @@ function getWeatherData() {
     }
 }
 
-document.getElementById(getData).addEventListener("click", getWeatherData);
+async function updateUI(data) {
+
+    try {
+
+        let temperature = data.data[0].app_temp
+        let icon = data.data[0].weather.icon
+        let iconurl = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
+
+        document.getElementById("clima").innerHTML = `Weather: ${temperature} ºC`;
+        document.getElementById("imagen-clima").setAttribute("src", iconurl);
+
+    } catch (error) {
+        
+        throw error;
+    }
+}
+
+document.getElementById("getDataButton").addEventListener("click", getWeatherData);
 
 export { getWeatherData }

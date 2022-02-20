@@ -1,24 +1,20 @@
-import numeral from "numeral";
-import { format } from "date-fns";
-import parseISO from 'date-fns/parseISO';
+let moment = require('moment');
 
-const API_URL = `http://api.geonames.org/search`;
+/*CLAVES*/ 
+const API_URL = 'http://api.geonames.org/search';
 const API_KEY = process.env.CLAVE_GEONAMES;
+/*claves*/ 
 
-const PARAM_USERNAME = API_KEY;
+let date = "";
 
-let travelDate = "";
-
-function validar(input) {
-
+function validateInput(input) {
     const isInputValid = input ? input.length > 0 : false;
-
     return isInputValid;
 }
 
 async function fetchGeoData(input) {
 
-    const isInputValid = validar(input);
+    const isInputValid = validateInput(input);
 
     if (isInputValid) {
 
@@ -26,12 +22,10 @@ async function fetchGeoData(input) {
 
         try {
 
-            const PARAM_URL = `${API_URL}?q=${encodedInput}&type=json&maxRows=10&style=full&lang=en&username=${PARAM_USERNAME}&formatted=true`;
-
+            const PARAM_URL = `${API_URL}?q=${encodedInput}&type=json&maxRows=10&style=full&lang=en&username=${API_KEY}&formatted=true`;
             const response = await fetch(`${PARAM_URL}`);
 
             if (!response.ok) {
-
                 throw `Error: ${response.status} - ${response.statusText}`;
             }
 
@@ -46,59 +40,30 @@ async function fetchGeoData(input) {
 
     } else {
 
-        throw "Error: Invalid input.";
+        throw "Error: Input error.";
     }
 }
 
-
-async function actualizarUI(data) {
-
-    try {
-
-        const geoname = data.geonames[0].name;
-        const countryName = data.geonames[0].countryName;
-        const longtitude = data.geonames[0].lng;
-        const latitud = data.geonames[0].lat;
-        const población = numeral(data.geonames[0].población).format('0,0');
-
-        let metricSymbol = '&#176;';
-
-        document.getElementById("fecha").innerHTML = travelDate || "(Date Not Set)";
-        document.getElementById("ciudad").innerHTML = `City: ${geoname}`;
-        document.getElementById("codigo").innerHTML = `Country: ${countryName}`;
-        document.getElementById("longitud").innerHTML = `Longtitude: ${longtitude} ${metricSymbol}`;
-        document.getElementById("latitud").innerHTML = `latitud: ${latitud} ${metricSymbol}`;
-        document.getElementById("población").innerHTML = `population: ${población}`;
-
-
-
-    } catch (error) {
-
-        throw error;
-    }
-}
-
-function getGeoName() {
+function getGeoNames() {
 
     const input = document.getElementById("destino").value;
-    let date = document.getElementById("departDate").value;
-    travelDate = date ? format(parseISO(date), 'MM/dd/yyyy') : '';
+    date = moment(document.getElementById("salida").value).format('DD-MM-YYYY');
 
     try {
 
-        const isInputValid = validar(input);
+        const isInputValid = validateInput(input);
 
         if (isInputValid) {
-
+     
             fetchGeoData(input)
                 .then((data) => {
                     if (data) {
-    
-                        actualizarUI(data);
+                   
+                        updateUI(data);
                     }
                 })
                 .catch((error) => {
-         
+                
                     alert(error);
                 });
         } else {
@@ -106,10 +71,32 @@ function getGeoName() {
             alert("Please enter a valid city name.");
         }
     } catch (error) {
-
+    
         alert(error);
     }
 }
 
-document.getElementById(getData).addEventListener("click", getGeoName);
-export { getGeoName }
+async function updateUI(data) {
+
+    try {
+
+        const name = data.geonames[0].name;
+        const country = data.geonames[0].countryName;
+        const longtitude = data.geonames[0].lng;
+        const latitude = data.geonames[0].lat;
+
+        document.getElementById("ciudad-viaje").innerHTML = name;
+        document.getElementById("pais-viaje").innerHTML = country;
+        document.getElementById("fecha-viaje").innerHTML = date || "(Date Not Set)";
+        document.getElementById("latitud").innerHTML = `Latitude: ${latitude}º`;
+        document.getElementById("longitud").innerHTML = `Longtitude: ${longtitude}º`;
+
+    } catch (error) {
+
+        throw error;
+    }
+}
+
+document.getElementById("getDataButton").addEventListener("click", getGeoNames);
+
+export { getGeoNames }

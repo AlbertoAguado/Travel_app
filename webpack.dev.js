@@ -10,14 +10,17 @@ module.exports = {
         // name of generated Javascript output file inserted (by the plugin 'HtmlWebPackPlugin') in the 'head' section of index.html
         filename: 'bundle.js',
         // folder where the generated 'bundle.js' file will be placed
-        path: path.resolve(__dirname, './dist-dev')
+        path: path.resolve(__dirname, './dist-dev'),
+        // images
+        assetModuleFilename: "./src/client/views/img/[name][ext]"
+
     },
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
     // webpack dev server configuration
     devServer: {
-        port: 6050,
+        port: 8010,
         static: {
             directory: path.resolve(__dirname, './dist-dev')
         },
@@ -51,7 +54,12 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 },
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             }
+            
         ]
     },
     plugins: [

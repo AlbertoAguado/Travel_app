@@ -1,67 +1,76 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel App - Alberto Aguado</title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> Alberto´s Travel App </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    </head>
 
-<body>
-    <div id="app">
-        <div class="title"> Travel App </div>
-        <div class="subtitle"> Your trip´s details</div>
-        <div class="destino">
-            <label for=ciudad>Where are you planning to go?</label>
-            <!-- <br> -->
-            <input type="text" id="destino" placeholder="City">
+    <body>
+        <div>
+
+            <!--TITULO-->
+            <div id="titulo-principal">
+
+                <img class="titulo-principal-elemento" src="./src/client/views/img/This.png"/>
+                <img class="titulo-principal-elemento" src="./src/client/views/img/is.png"/>
+                <img class="titulo-principal-elemento" src="./src/client/views/img/My_travel_app.png"/>
+
+            </div>
+
+            <!--FORMULARIO-->
+            <div id="formulario-viaje">
+
+                <div class="formulario-destino">
+                    <label for="ciudad"><strong>Where</strong> are you planning to go?</label>
+                    <input required class="input-formulario" type="text" id="destino" name="ciudad" placeholder="Write your destination">
+                </div>
+                <div class="formulario-fecha">
+                    <label for="fecha-salida"><strong>When</strong> are you planning to go?</label>
+                    <input required class="input-formulario" type="date" id="salida" name="fecha-salida"></input>
+                </div>
+                <div class="formulario-fecha">
+                    <label for="fecha-llegada"><strong>When</strong> are you planning to return?</label>
+                    <input required class="input-formulario" type="date" id="llegada" name="fecha-llegada"></input>
+                </div>
+
+                <button id="getDataButton"> Submit </button>
+
+            </div>
+
+            <!--DATOS OBTENIDOS-->
+            <div id="datos-viaje">
+                <div id="resultado-titulo"></div>
+                
+                <div>
+                    <div id="ciudad-viaje"></div>
+                    <div id="pais-viaje"></div>
+        
+                    <img id="imagen-ciudad" src="./src/client/views/img/no-image.png"/>    
+                </div>
+            
+                <div id="latitud"></div>
+                <div id="longitud"></div>
+                <div id="fecha-viaje"></div>
+                <div id="clima"></div>
+                <img id="imagen-clima" src=""/>
+                <div id="cuentaatras"></div>
+                <div id="duracion"></div>
+            </div>
+
         </div>
-        <br>
-        <div class="holder date">
-            <label class="date">When are you leaving?</label>
-            <input type="date" id="departDate" placeholder="1st february 2022"></input>
-            <br>
-            <button id=getData> Submit </button>
-        </div>
-        <div class="results holder">
-            <table>
-                <tr>
-                    <h1> My Trip </h1>
-                    <td class="detalles-viaje" id="fecha"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="ciudad"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="codigo"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="longitud"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="latitud"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="población"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="weather"></td>
-                </tr>
-                <tr>
-                    <td class="detalles-viaje" id="main-image">
-                        <img id="imagen" src="">
-                    </td>
-                </tr>
-                <tr>
-                    <br>
-                    <td class="detalles-viaje-timer" id="timer"> </td>
-                </tr>
-            </table>
-        </div>
+
+        <!--FOOTER-->
         <footer>
-            <h6>Alberto Aguado. &copy;</h6>
+            <h3 class="footer-text">Capstone project for the Udacity´s Front-End Nanodegree by Alberto Aguado</h3>
+            <h3 class="footer-text">Inspired by</h3>
+            <img id="sasek-sign" src="./src/client/views/img/sasek.png"/>
         </footer>
-    </div>
-</body>
+    </body>
 
 </html>

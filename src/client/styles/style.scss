@@ -1,216 +1,160 @@
         body {
             background: rgb(171, 168, 149);
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Rubik', sans-serif;
+            margin:0;
+            padding:0;
         }
         
-        #app {
+        /*TITULO*/
+
+        #titulo-principal {
+            display:flex;
+            justify-content:center;
+            margin-top:1em;
+        }
+
+        .titulo-principal-elemento:first-child {
+            margin-right:7px;
+            max-width:276px;
+        }
+
+        .titulo-principal-elemento:nth-child(2) {
+            max-width:136px;
+        }
+        
+        .titulo-principal-elemento:nth-child(3) {
+            max-width:750px;
+        }
+
+        /*titulo*/
+
+
+        /*FORMULARIO*/
+
+        #formulario-viaje {
             display: flex;
-            grid-auto-rows: minmax(auto, );
-            grid-template-columns: auto;
             flex-direction: column;
-            justify-content: center;
-            grid-gap: 1em;
-            font-size: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            padding: 10px 20px 30px 20px;
-            height: 100%;
-            margin: 0;
+            align-items:center;
+            margin-top:2em;
+            font-size:1.5em;
         }
-        
-        table {
-            max-width: 800px;
-            margin: 50px auto;
+
+        #getDataButton {
+            cursor: pointer;
         }
-        
-        .subtitle {
-            text-align: center;
-        }
-        
-        .holder {
-            justify-content: center;
-        }
-        
-        .feel {
-            margin-top: 0;
-        }
-        
-        .weather {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        
-        #entryHolder {
-            color: lightblue;
-            height: 100px;
-        }
-        
-        .weather-entry-label {
-            display: inline;
-            float: left;
-            margin: 8px 10px 0 0;
-            color: #000;
-            font-size: 16px;
-        }
-        
-        .headline {
+
+        .formulario-destino, .formulario-fecha {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            height: 60px;
+            flex-direction: column;
+            margin-bottom: 1.5em;
         }
-        
-        .title {
-            font-size: 20px;
+
+        #formulario-viaje label {
+            text-align: center;
+        }
+
+        .input-formulario, #getDataButton {
+            padding: 0.25em;
+            margin: 0.75em 2em;
+            font-size: 1em;
+        }
+
+        #getDataButton {
+            margin-top:1em;
+            text-transform:uppercase;
             font-weight: bold;
-            margin: 10px;
+        }
+
+        /*formulario*/
+
+        /*DATOS VIAJE*/
+
+        #datos-viaje {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1em;
+        }
+
+        #ciudad-viaje {
+            font-size: 2.5em;
+            font-weight: bold;
             text-align: center;
         }
-        /* Styling for Text Areas */
-        
-        textarea {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+
+        #pais-viaje {
+            font-size: 2em;
+            text-align:center;
         }
-        /*  Basic Styling To Override Default For Basic HTML Elements */
-        
-        label {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 5px;
+       
+        #imagen-ciudad {
+            border: 10px solid white;
+            margin: 2em;
         }
-        
-        input {
-            display: block;
-            height: 30px;
-            width: 320px;
-            font-size: 16px;
-            font-family: 'Source Serif Pro', sans-serif;
-            border: 1px solid #ccc;
-            padding: 4px;
+
+        #imagen-clima {
+            background: white;
+            border-radius: 50%;
+            margin: .5em;
+            box-shadow:1px 1px black;
         }
-        
-        .main-image {
-            margin-top: 40px;
-            img {
-                width: 100%;
+
+        /*datos viaje*/
+
+
+        /*FOOTER*/
+        footer {
+            background-color:black;
+            text-align:center;
+            color:white;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            margin-top:3em;
+            border-top:1px solid lightgray;
+        }
+
+        .footer-text {
+            margin:0 auto;
+            font-weight:100;
+        }
+
+        #sasek-sign {
+            width:100px;
+        }
+        /*footer*/
+
+        @media(max-width:1200px) {
+            #titulo-principal {
+                display:flex;
+                flex-direction:column;
+                align-items:center;
             }
         }
-        
-        button {
-            width: 100px;
-            height: 40px;
-            margin: 20px 38%;
-            font-size: 16px;
-            font-family: 'Source Serif Pro', sans-serif;
-            border: none;
-            box-shadow: 2px 2px 4px #444;
-        }
-        
-        h1 {
-            font-size: 36px;
-        }
-        
-        h6 {
-            text-align: center;
-        }
-        
-        textarea {
-            /* background: #eee; */
-            color: #000;
-            font-size: 16px;
-            font-family: 'Source Serif Pro', sans-serif;
-            height: 50px;
-            border: 1px solid #ccc;
-            padding: 4px;
-            resize: none;
-        }
-        /* Reset style for HTML element on active to have no border*/
-        
-        input:focus,
-        select:focus,
-        textarea:focus,
-        button:focus {
-            outline: none;
-        }
-        /* Style for Placeholder Text*/
-        
-         ::placeholder {
-            /* Firefox, Chrome, Opera */
-            /* color: #f0d43a; */
-            color: #ccc;
-            font-family: 'Source Serif Pro', sans-serif;
-        }
-        
-         :-ms-input-placeholder {
-            /* Internet Explorer 10-11 */
-            /* color: #f0d43a; */
-            font-family: 'Source Serif Pro', sans-serif;
-        }
-        
-         ::-ms-input-placeholder {
-            /* Microsoft Edge */
-            /* color: #f0d43a; */
-            font-family: 'Source Serif Pro', sans-serif;
-        }
-        
-        // Smaller Screen
-        @media(max-width:600px) {
-            #app {
-                display: flex;
-                padding: 5px;
-                // grid-template-columns: 1fr;
-                // grid-template-rows: 350px 350px 735px 45px;
+
+        @media(max-width:768px) {
+
+            .titulo-principal-elemento:first-child {
+                margin-right:7px;
+                max-width:138px;
             }
-            body {
-                display: flex;
-                background: rgb(136, 203, 171);
-                color: black;
-                font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-                justify-content: center;
-                align-items: center;
+    
+            .titulo-principal-elemento:nth-child(2) {
+                max-width:68px;
             }
-            // table {
-            //     padding: 5px;
-            // }
-            // img {
-            //     height: 250px;
-            //     width: 350px;
-            // }
-            .title {
-                grid-area: cat;
-                display: grid;
-                font-size: 35px;
-                text-align: center;
+            
+            .titulo-principal-elemento:nth-child(3) {
+                max-width:375px;
             }
-        }
-        /* Medium Screens */
-        
-        @media(min-width:600px) and (max-width:900px) {
-            .container {
-                display: grid;
-                grid-template-columns: 200px 250px;
-                grid-template-rows: 350px 350px 735px 45px;
+
+            #imagen-ciudad {
+                max-width:500px;
             }
-            .box {
-                display: grid;
-                background: #f5f5f5;
-                color: black;
-                font-size: 40px;
-                font-family: Benton Sans, sans-serif;
-                justify-content: center;
-                border: 1px solid red;
+
+            footer {
+                font-size: .75em;
             }
-            .text-wrap {
-                background: #f5f5f5;
-                font-size: 15px;
-                font-family: Raleway, sans-serif;
-                margin: 10px;
-                padding: 5px;
-                width: 100px
+
+            #sasek-sign {
+                width:75px;
             }
         }

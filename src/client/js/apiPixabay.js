@@ -1,12 +1,15 @@
+/*CLAVES*/ 
+const API_URL = 'https://pixabay.com/api/?';
 const API_KEY = process.env.CLAVE_PIXABAY;
+/*claves*/
 
-function validar(input) {
+function validateInput(input) {
     const isInputValid = input ? input.length > 0 : false;
     return isInputValid;
 }
 
-async function fetchImage(input) {
-    const isInputValid = validar(input);
+async function fetchPixabayPicture(input) {
+    const isInputValid = validateInput(input);
 
     if (isInputValid) {
 
@@ -14,7 +17,7 @@ async function fetchImage(input) {
 
         try {
 
-            const response = await fetch(`https://pixabay.com/api/?key=${API_KEY}&q=${encodedInput}&image_type=photo`);
+            const response = await fetch(`${API_URL}key=${API_KEY}&q=${encodedInput}&image_type=photo`);
 
             if (!response.ok) {
 
@@ -24,29 +27,13 @@ async function fetchImage(input) {
             const data = await response.json();
 
             return data;
-
         } catch (error) {
 
             throw error;
         }
     } else {
 
-        throw "Error: Bad input.";
-    }
-}
-
-async function actualizarUI(data) {
-
-    try {
-
-        const pixabayData = data.hits[0].webformatURL
-        const imageUrl = pixabayData
-
-        document.getElementById("imagen").setAttribute("src", imageUrl);
-
-    } catch (error) {
-
-        throw error;
+        throw "Error: Invalid input.";
     }
 }
 
@@ -55,15 +42,16 @@ function getPictureData() {
     const input = document.getElementById("destino").value;
 
     try {
-        const isInputValid = validar(input);
+
+        const isInputValid = validateInput(input);
 
         if (isInputValid) {
-
-            fetchImage(input)
+      
+            fetchPixabayPicture(input)
                 .then((data) => {
                     if (data) {
 
-                        actualizarUI(data);
+                        updateUI(data);
                     }
                 })
                 .catch((error) => {
@@ -80,6 +68,20 @@ function getPictureData() {
     }
 }
 
-document.getElementById(getData).addEventListener("click", getPictureData);
+async function updateUI(data) {
+
+    try {
+
+        const pixabayData = data.hits[0].webformatURL
+
+        document.getElementById("imagen-ciudad").setAttribute("src", pixabayData);
+
+    } catch (error) {
+
+        throw error;
+    }
+}
+
+document.getElementById("getDataButton").addEventListener("click", getPictureData);
 
 export { getPictureData }

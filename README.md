@@ -1,6 +1,5 @@
-# Travel App for Udacity Capstone project #
-## Front End Development Nanodegree##
-Alberto Aguado
+# Capstone project for the Udacity Front End Nanodegree #
+## Alberto Aguado ##
 
-Ejecutar npm run build-dev
-Ejecutar npm start
+After npm install, run npm build-dev and in other terminal npm start
+

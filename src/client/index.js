@@ -1,9 +1,15 @@
 import './styles/style.scss'
-import { getGeoName } from './js/apiGeonames.js'
+
+import { getGeoNames } from './js/apiGeonames.js'
 import { getWeatherData } from './js/apiWeatherbit.js'
 import { getPictureData } from './js/apiPixabay.js'
 import { tripCountdown } from './js/countdown.js'
 
+import './views/img/This.png'
+import './views/img/is.png'
+import './views/img/My_travel_app.png'
+import './views/img/sasek.png'
+import './views/img/no-image.png'
 
 
 function registerServiceWorker() {
