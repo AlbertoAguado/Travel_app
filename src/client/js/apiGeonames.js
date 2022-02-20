@@ -7,41 +7,28 @@ const API_KEY = process.env.CLAVE_GEONAMES;
 
 let date = "";
 
-function validateInput(input) {
-    const isInputValid = input ? input.length > 0 : false;
-    return isInputValid;
-}
-
 async function fetchGeoData(input) {
 
-    const isInputValid = validateInput(input);
+   
+    let encodedInput = encodeURIComponent(input);
 
-    if (isInputValid) {
+    try {
 
-        let encodedInput = encodeURIComponent(input);
+        const PARAM_URL = `${API_URL}?q=${encodedInput}&type=json&maxRows=10&style=full&lang=en&username=${API_KEY}&formatted=true`;
+        const response = await fetch(`${PARAM_URL}`);
 
-        try {
+        if (!response.ok) {
+            throw `Error: ${response.status} - ${response.statusText}`;
+        }
 
-            const PARAM_URL = `${API_URL}?q=${encodedInput}&type=json&maxRows=10&style=full&lang=en&username=${API_KEY}&formatted=true`;
-            const response = await fetch(`${PARAM_URL}`);
+        const data = await response.json();
 
-            if (!response.ok) {
-                throw `Error: ${response.status} - ${response.statusText}`;
-            }
-
-            const data = await response.json();
-
-            return data;
+        return data;
 
         } catch (error) {
-
             throw error;
         }
 
-    } else {
-
-        throw "Error: Input error.";
-    }
 }
 
 function getGeoNames() {
@@ -51,25 +38,16 @@ function getGeoNames() {
 
     try {
 
-        const isInputValid = validateInput(input);
-
-        if (isInputValid) {
-     
-            fetchGeoData(input)
-                .then((data) => {
-                    if (data) {
-                   
-                        updateUI(data);
-                    }
+        fetchGeoData(input)
+            .then((data) => {
+                if (data) {
+                   updateUI(data);
+                }
                 })
                 .catch((error) => {
-                
-                    alert(error);
-                });
-        } else {
+                alert(error);
+        });
 
-            alert("Please enter a valid city name.");
-        }
     } catch (error) {
     
         alert(error);
