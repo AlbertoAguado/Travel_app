@@ -11,9 +11,11 @@ module.exports = {
     entry: './src/client/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist')
+        path: path.resolve(__dirname, './dist'),
+        assetModuleFilename: "./src/client/views/img/[name][ext]"
     },
     mode: 'production',
+    
     module: {
         rules: [
          
@@ -42,11 +44,14 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 },
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             }
         ]
     },
     optimization: {
-
         minimizer: [
             new CssMinimizerPlugin()
         ],
@@ -55,22 +60,16 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: '[name].scss' }),
         new HtmlWebPackPlugin({
             template: "src/client/views/index.html",
-  
             filename: "index.html"
         }),
         new CleanWebpackPlugin({
-        
-            dry: true,
-        
+            Dry: true,
             verbose: true,
-         
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
         new DotEnv(),
-
         new WorkboxPlugin.GenerateSW({
-
             clientsClaim: true,
             skipWaiting: true,
         }),
