@@ -7,18 +7,14 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
     entry: './src/client/index.js',
     output: {
-        // name of generated Javascript output file inserted (by the plugin 'HtmlWebPackPlugin') in the 'head' section of index.html
         filename: 'bundle.js',
-        // folder where the generated 'bundle.js' file will be placed
         path: path.resolve(__dirname, './dist-dev'),
-        // images
         assetModuleFilename: "./src/client/views/img/[name][ext]"
 
     },
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
-    // webpack dev server configuration
     devServer: {
         port: 8010,
         static: {
@@ -29,28 +25,26 @@ module.exports = {
             writeToDisk: true
         }
     },
+
     module: {
-        rules: [{
+        rules: [
+            
+            {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    // Creates `style` nodes from JS strings
                     "style-loader",
-                    // Translates CSS into CommonJS
                     "css-loader",
-                    // Compiles Sass to CSS
                     "sass-loader",
                 ]
             },
-            // Javascript loader configuration with transpiler options
+
             {
                 test: '/\.js$/',
                 exclude: /node_modules/,
-                // babel loader configuration
+
                 use: {
                     loader: "babel-loader",
                     options: {
-                        // transpiles Javascript code to cross-browser compatible (ES5) code
-                        // presets: [ '@babel/env' ]
                         presets: ['@babel/preset-env']
                     }
                 },
@@ -58,8 +52,7 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-            }
-            
+            }            
         ]
     },
     plugins: [
@@ -68,15 +61,11 @@ module.exports = {
             filename: "index.html"
         }),
         new CleanWebpackPlugin({
-            // Simulate the removal of files
             dry: true,
-            // Write Logs to Console
             verbose: true,
-            // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
         new Dotenv(),
-
     ]
 }
