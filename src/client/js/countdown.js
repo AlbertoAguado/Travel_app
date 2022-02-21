@@ -1,3 +1,4 @@
+//Function to countdown days left to the trip
 function countdown() {
     let departure = Date.parse(document.getElementById("salida").value);
     let arrival =  Date.parse(document.getElementById("llegada").value);
@@ -20,6 +21,10 @@ function countdown() {
 
 }
 
-document.getElementById("getDataButton").addEventListener("click", countdown);
+//On trip countdown
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById("getDataButton").addEventListener("click", countdown);
+});
+
 
 export { countdown }

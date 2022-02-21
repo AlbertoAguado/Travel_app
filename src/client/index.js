@@ -1,10 +1,11 @@
+//styles
 import './styles/style.scss'
-
+//js
 import { getGeoNames } from './js/apiGeonames.js'
 import { getWeatherData } from './js/apiWeatherbit.js'
 import { getPictureData } from './js/apiPixabay.js'
 import { tripCountdown } from './js/countdown.js'
-
+//Images
 import './views/img/This.png'
 import './views/img/is.png'
 import './views/img/My_travel_app.png'

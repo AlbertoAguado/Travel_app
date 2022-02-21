@@ -3,6 +3,7 @@ const API_URL = 'https://api.weatherbit.io/v2.0/current?';
 const API_KEY = process.env.CLAVE_WEATHERBIT;
 /*claves*/ 
 
+//Function to ckeck is if valid and not empty
 function validateInput(input) {
 
     const isInputValid = input ? input.length > 0 : false;
@@ -10,6 +11,7 @@ function validateInput(input) {
     return isInputValid;
 }
 
+//Function to get weather data
 async function fetchWeatherData(input) {
 
     const isInputValid = validateInput(input);
@@ -20,6 +22,7 @@ async function fetchWeatherData(input) {
 
         try {
 
+            //Fetch the data from Weatherbit
             const response = await fetch(`${API_URL}&city=${encodedInput}&key=${API_KEY}&units=M`);
 
             if (!response.ok) {
@@ -41,6 +44,7 @@ async function fetchWeatherData(input) {
     }
 }
 
+//Function to get weather data and update ui
 function getWeatherData() {
 
     const input = document.getElementById("destino").value;
@@ -72,10 +76,12 @@ function getWeatherData() {
     }
 }
 
+//Function to update the ui
 async function updateUI(data) {
 
     try {
 
+        //Splita weather data
         let temperature = data.data[0].app_temp
         let icon = data.data[0].weather.icon
         let iconurl = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
@@ -89,6 +95,7 @@ async function updateUI(data) {
     }
 }
 
+//On click getweatherdata
 document.getElementById("getDataButton").addEventListener("click", getWeatherData);
 
 export { getWeatherData }

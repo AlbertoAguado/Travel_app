@@ -3,20 +3,26 @@ const API_URL = 'https://pixabay.com/api/?';
 const API_KEY = process.env.CLAVE_PIXABAY;
 /*claves*/
 
+
+//Function to ckeck is if valid and not empty
 function validateInput(input) {
     const isInputValid = input ? input.length > 0 : false;
     return isInputValid;
 }
 
+//Function to get the picture from Pixabay
 async function fetchPixabayPicture(input) {
+    //1st validate the input
     const isInputValid = validateInput(input);
 
     if (isInputValid) {
 
+        //encoding the city to clean it
         let encodedInput = encodeURIComponent(input);
 
         try {
 
+            //Fetch from pixabay
             const response = await fetch(`${API_URL}key=${API_KEY}&q=${encodedInput}&image_type=photo`);
 
             if (!response.ok) {
@@ -24,6 +30,7 @@ async function fetchPixabayPicture(input) {
                 throw `Error: ${response.status} - ${response.statusText}`;
             }
 
+            //Get json data    
             const data = await response.json();
 
             return data;
@@ -37,6 +44,7 @@ async function fetchPixabayPicture(input) {
     }
 }
 
+//Function to get the picture and update ui
 function getPictureData() {
 
     const input = document.getElementById("destino").value;
@@ -82,6 +90,7 @@ async function updateUI(data) {
     }
 }
 
+//On click get picture data
 document.getElementById("getDataButton").addEventListener("click", getPictureData);
 
 export { getPictureData }
