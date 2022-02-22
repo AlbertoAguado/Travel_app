@@ -31,3 +31,7 @@ app.use(cors());
 app.use(express.static('src'));
 
 app.listen(serverPort, listening);
+
+module.exports = {
+    getData
+  };
